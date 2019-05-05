@@ -14,7 +14,7 @@ b = 2
 X = np.array([[1.,2.,-1.],[3.,4.,-3.2]])
 Y = np.array([[1,0,1]])
 
-A = 1 / (1 + (-(w.T.dot(X)+b)))
+A = 1 / (1 + np.exp(-(w.T.dot(X)+b)))
 print(A)
 print("="*20)
 
@@ -27,3 +27,10 @@ print((1-Y)*np.log(1-A))
 cost = -1/m * np.sum(Y*np.log(A) + (1-Y)*np.log(1-A))
 
 print(cost)
+
+dw = 1/m * X.dot((A-Y).T)
+
+db = 1/m * np.sum(A-Y)
+
+print("dw is " + str(dw))
+print("db is " + str(db))
